@@ -1,0 +1,14 @@
+Person = { Alice, Bob, Charlie, David, Eve };
+job = [2,3,1,4,4];
+start = 1;
+end = 24;
+free = [| true, false, false, true, false, true, false, false, false, true, false, true,
+         false, false, true, false, true, false, false, false, true, false, true, true,
+        | true, false, false, false, false, false, false, false, true, true, false, true,
+         true, false, false, true, false, true, true, false, true, true, false, true,
+        | false, false, true, true, false, true, false, true, false, true, false, true,
+         true, false, false, true, false, true, true, false, false, true, false, true,
+        | false, false, true, true, false, true, false, true, false, true, false, true,
+         false, false, false, false, false, false, false, false, false, true, false, true,	
+        | true, true, true, true, false, true, true, false, false, true, false, true,
+         true, false, false, false, true, false, false, true, false, false, false, true |];
