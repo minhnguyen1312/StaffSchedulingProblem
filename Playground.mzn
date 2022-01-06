@@ -1,58 +1,45 @@
-% Peoples in the office
-enum Person; 
-% job for each person
-array[Person] of int: job;
-% starting and end office time
-int: start;
-int: end;
-set of int: HOURS = start..end;
+enum P; 
+array[P] of int: hour;
+set of int: T = 1..24;
+array[P,T] of bool: free;
+array[P,T] of var int: assign;
 
-array[Person,HOURS] of bool: free;
-
-array[Person,HOURS] of var int: assign;
-
-constraint forall (h in HOURS) (
-  forall (p in Person) (
-    assign[p,h] in (0..1)
-  )
+constraint forall (t in T, p in P) (
+  assign[p,t] in (0..1)
 );
 
-constraint forall (h in HOURS) (
-  1 >= sum (p in Person)(assign[p,h])
+constraint forall (t in T) (
+  1 >= sum (p in P)(assign[p,t])
 );
 
-constraint forall (p in Person) (
-  job[p] = sum (h in HOURS)(assign[p,h])
+constraint forall (p in P) (
+  hour[p] = sum (t in T)(assign[p,t])
 );
 
-constraint forall (p in Person) (
-  forall (h in HOURS) (
-    (assign[p,h] = 1) -> free[p,h]
-  )
+constraint forall (p in P, t in T) (
+  (assign[p,t] = 1) -> free[p,t]
 );
 
-var int: max;
+var int: t_max;
 
-constraint forall (p in Person) (
-  forall (h in HOURS) (
-    (assign[p,h] = 1) -> (h <= max)
-  )
+constraint forall (p in P, t in T) (
+    (assign[p,t] = 1) -> (t <= t_max)
 );
 
-constraint exists (p in Person) (
-  assign[p,max] = 1
+constraint exists (p in P) (
+  assign[p,t_max] = 1
 );
 
-solve minimize max;
+solve minimize t_max;
 
-output [ "MAX:  " ++ show(max) ++ "\n"];
+output [ "LAST HOUR:  " ++ show(t_max) ++ "\n"];
 output [ "SOLUTION:  \n" ++ format_justify_string(10,"") ++ "\t"];
 output [  format_justify_string(2,show(j)) ++ 
-          if j == end then "\n" else " " endif |
-          j in HOURS
+          if j == 24 then "\n" else " " endif |
+          j in T
 ];
-output [ if j == start then format_justify_string(10,show(Person[i])) ++ "\t" else "" endif ++
+output [ if j == 1 then format_justify_string(10,show(P[i])) ++ "\t" else "" endif ++
          format_justify_string(2,show(assign[i,j])) ++
-         if j == end then "\n" else " " endif |
-         i in Person, j in HOURS
+         if j == 24 then "\n" else " " endif |
+         i in P, j in T
 ];

@@ -1,0 +1,6 @@
+P = { Alice, Bob };
+hour = [2,2];
+free = [| false, true, true, true, false, false, false, false, false, false, false, false, false,
+          false, false, false, false, false, false, false, false, false, false, false,
+        | false, true, true, true, false, false, false, false, false, false, false, false, false,
+          false, false, false, false, false, false, false, false, false, false, false|];

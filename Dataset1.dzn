@@ -1,7 +1,5 @@
-Person = { Alice, Bob, Charlie, David, Eve };
-job = [2,3,1,4,4];
-start = 1;
-end = 24;
+P = { Alice, Bob, Charlie, David, Eve };
+hour = [2,3,1,2,4];
 free = [| true, false, false, true, false, true, false, false, false, true, false, true,
          false, false, true, false, true, false, false, false, true, false, true, true,
         | true, false, false, false, false, false, false, false, true, true, false, true,

@@ -1,0 +1,3 @@
+Running Playground.mzn with Dataset2.dzn
+=====UNSATISFIABLE=====
+Finished in 275msec
